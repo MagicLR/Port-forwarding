@@ -1,0 +1,36 @@
+name: Go Build and Package
+
+on:
+  push:
+    branches:
+      - main  # 您可以根据需要修改分支名称
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.26.2'  # 您可以根据需要指定 Go 版本
+
+      - name: Build for ARM32
+        env:
+          GOARCH: arm
+          GOARM: 7
+          CGO_ENABLED: 0
+        run: |
+          go build -o myprogram_arm32 main.go  # 替换为您的主文件名
+
+      - name: Upload Binary
+        uses: actions/upload-artifact@v2
+        with:
+          name: myprogram_arm32
+          path: myprogram_arm32

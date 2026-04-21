@@ -38,8 +38,8 @@ func handleTCP(wg *sync.WaitGroup, conn net.Conn) {
 }
 
 func handleUDP() {
-	// 创建IPv6 UDP监听（6666）
-	ipv6Addr, err := net.ResolveUDPAddr("udp6", "[::]:6666") // 监听6666
+	// 创建IPv6 UDP监听（5566）
+	ipv6Addr, err := net.ResolveUDPAddr("udp6", "[::]:5566") // 监听5566
 	if err != nil {
 		fmt.Println("解析IPv6地址错误:", err)
 		return
@@ -96,7 +96,7 @@ func main() {
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
-		ipv6Listener, err := net.Listen("tcp6", ":6666") // 监听6666
+		ipv6Listener, err := net.Listen("tcp6", ":5566") // 监听5566
 		if err != nil {
 			fmt.Println("TCP监听错误:", err)
 			return

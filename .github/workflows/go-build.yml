@@ -14,12 +14,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
         with:
-          go-version: '1.26.2'  # 您可以根据需要指定 Go 版本
+          go-version: '1.26'  # 您可以根据需要指定 Go 版本
 
       - name: Build for ARM32
         env:
@@ -30,7 +30,7 @@ jobs:
           go build -o myprogram_arm32 main.go  # 替换为您的主文件名
 
       - name: Upload Binary
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: myprogram_arm32
           path: myprogram_arm32

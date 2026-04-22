@@ -27,7 +27,7 @@ jobs:
           GOARM: 7
           CGO_ENABLED: 0
         run: |
-          go build -o myprogram_arm32 main.go  # 替换为您的主文件名
+          go build -o libprot.so main.go  # 替换为您的主文件名
 
       - name: Upload Binary
         uses: actions/upload-artifact@v4
